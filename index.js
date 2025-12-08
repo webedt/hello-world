@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Hello World - The Way of the Ninja
+ * Hello World - The Way of the Samurai
  * A simple demonstration of displaying greetings in the terminal
  */
 
