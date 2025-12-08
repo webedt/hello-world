@@ -1,4 +1,4 @@
-# Hello World - The Way of the Samurai ⚔️
+# Hello World - The Way of the Ninja 🥷
 
 A simple Node.js project that displays "Hello World!" in the command line.
 
