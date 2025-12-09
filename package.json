@@ -1,13 +1,25 @@
 {
   "name": "hello-world",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "A simple Hello World Node.js project - The Way of the Ninja"
+  "description": "A simple Hello World Node.js project - The Way of the Ninja",
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "5.1.2",
+    "vite": "7.2.7"
+  }
 }
