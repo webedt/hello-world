@@ -18,6 +18,13 @@ export default function AudioPlayer({ src, fileName }) {
     const audio = audioRef.current;
     if (!audio) return;
 
+    // Reset state when src changes
+    setIsLoading(true);
+    setError(null);
+    setCurrentTime(0);
+    setDuration(0);
+    setIsPlaying(false);
+
     const handleLoadedMetadata = () => {
       setDuration(audio.duration);
       setIsLoading(false);
