@@ -12,6 +12,7 @@ export default function AudioPlayer({ src, fileName }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function AudioPlayer({ src, fileName }) {
 
     // Reset state when src changes
     setIsLoading(true);
+    setIsInitialLoad(true);
     setError(null);
     setCurrentTime(0);
     setDuration(0);
@@ -46,6 +48,7 @@ export default function AudioPlayer({ src, fileName }) {
 
     const handleCanPlay = () => {
       setIsLoading(false);
+      setIsInitialLoad(false);
     };
 
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
@@ -111,6 +114,30 @@ export default function AudioPlayer({ src, fileName }) {
         <div style={styles.errorContainer}>
           <span style={styles.errorIcon}>⚠️</span>
           <span style={styles.errorText}>{error}</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Show initial loading screen with spinning circle
+  if (isInitialLoad) {
+    return (
+      <div style={styles.container}>
+        <audio ref={audioRef} src={src} preload="metadata" />
+        <div style={styles.initialLoadingContainer}>
+          <div style={styles.spinnerContainer}>
+            <svg style={styles.spinner} viewBox="0 0 50 50">
+              <circle
+                style={styles.spinnerCircle}
+                cx="25"
+                cy="25"
+                r="20"
+                fill="none"
+                strokeWidth="4"
+              />
+            </svg>
+          </div>
+          <span style={styles.loadingText}>Loading audio...</span>
         </div>
       </div>
     );
@@ -298,6 +325,35 @@ const styles = {
     marginRight: '8px',
   },
   errorText: {
+    fontSize: '14px',
+  },
+  initialLoadingContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '40px 20px',
+    minHeight: '120px',
+  },
+  spinnerContainer: {
+    width: '48px',
+    height: '48px',
+    marginBottom: '16px',
+  },
+  spinner: {
+    width: '100%',
+    height: '100%',
+    animation: 'spin 1s linear infinite',
+  },
+  spinnerCircle: {
+    stroke: '#4a9eff',
+    strokeLinecap: 'round',
+    strokeDasharray: '90, 150',
+    strokeDashoffset: '0',
+    animation: 'dash 1.5s ease-in-out infinite',
+  },
+  loadingText: {
+    color: '#a0a0a0',
     fontSize: '14px',
   },
 };
