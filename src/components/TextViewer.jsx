@@ -2,7 +2,8 @@
  * TextViewer component - Displays text/code files with syntax highlighting
  */
 export default function TextViewer({ content, fileName }) {
-  const lineCount = content ? content.split('\n').length : 0;
+  const lines = content ? content.split('\n') : [];
+  const lineCount = lines.length;
 
   return (
     <div style={styles.container}>
@@ -13,11 +14,29 @@ export default function TextViewer({ content, fileName }) {
         <span style={styles.lineCount}>{lineCount} lines</span>
       </div>
 
-      {/* Code display */}
+      {/* Code display with line numbers */}
       <div style={styles.codeContainer}>
-        <pre style={styles.code}>
-          <code>{content || '(empty file)'}</code>
-        </pre>
+        <table style={styles.codeTable}>
+          <tbody>
+            {lines.length > 0 ? (
+              lines.map((line, index) => (
+                <tr key={index}>
+                  <td style={styles.lineNumber}>{index + 1}</td>
+                  <td style={styles.lineContent}>
+                    <pre style={styles.code}><code>{line}</code></pre>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td style={styles.lineNumber}>1</td>
+                <td style={styles.lineContent}>
+                  <pre style={styles.code}><code>(empty file)</code></pre>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
@@ -62,14 +81,37 @@ const styles = {
     overflow: 'auto',
     backgroundColor: '#1a1a1a',
   },
+  codeTable: {
+    width: '100%',
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+  },
+  lineNumber: {
+    width: '1%',
+    minWidth: '40px',
+    padding: '0 12px',
+    textAlign: 'right',
+    verticalAlign: 'top',
+    fontFamily: '"Fira Code", "Monaco", "Menlo", monospace',
+    fontSize: '13px',
+    lineHeight: '1.5',
+    color: '#6e7681',
+    backgroundColor: '#1a1a1a',
+    userSelect: 'none',
+    borderRight: '1px solid #333',
+  },
+  lineContent: {
+    padding: '0 0 0 12px',
+    verticalAlign: 'top',
+  },
   code: {
     margin: 0,
-    padding: '16px',
+    padding: 0,
     fontFamily: '"Fira Code", "Monaco", "Menlo", monospace',
     fontSize: '13px',
     lineHeight: '1.5',
     color: '#d4d4d4',
-    whiteSpace: 'pre-wrap',
+    whiteSpace: 'pre',
     wordBreak: 'break-word',
   },
 };
