@@ -73,6 +73,7 @@ console.log('Hello World!');`,
       {/* Header */}
       <header style={styles.header}>
         <h1 style={styles.title}>📂 Code Editor - File Viewer</h1>
+        <p style={styles.tagline}>This is the way to edit - edit is the way</p>
         <p style={styles.subtitle}>Click on a file to preview it. Audio files get a music player!</p>
       </header>
 
@@ -159,6 +160,12 @@ const styles = {
     fontSize: '20px',
     fontWeight: '600',
     color: '#ffffff',
+  },
+  tagline: {
+    margin: '0 0 4px 0',
+    fontSize: '14px',
+    fontStyle: 'italic',
+    color: '#9cdcfe',
   },
   subtitle: {
     margin: 0,
