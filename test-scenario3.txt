@@ -2,3 +2,5 @@ This is test-scenario3.txt
 
 Initial content for testing purposes.
 Created as part of a test scenario.
+
+Queued message received
