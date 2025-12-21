@@ -1,0 +1,5 @@
+This is a test file for scenario 3.
+
+Initial content created for testing purposes.
+
+Queued message received
