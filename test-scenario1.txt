@@ -1,1 +1,2 @@
 Hello from scenario 1
+Resumed successfully
