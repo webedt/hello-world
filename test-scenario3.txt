@@ -1,0 +1,4 @@
+This is test scenario 3.
+
+Initial content for testing purposes.
+Created on: 2025-12-21
